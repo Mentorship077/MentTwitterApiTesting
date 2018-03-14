@@ -20,8 +20,7 @@ public class TweetsApi extends AuthBaseApi {
     public Response homeTimeLine() {
         Response response = getAuth()
                 .when()
-                .post("https://api.twitter.com/1.1/statuses/home_timeline.json\n" +
-                        "\n");
+                .get("https://api.twitter.com/1.1/statuses/home_timeline.json");
         return response;
     }
 }

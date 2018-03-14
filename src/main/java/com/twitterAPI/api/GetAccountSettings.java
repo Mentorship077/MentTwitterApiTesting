@@ -14,9 +14,7 @@ public class GetAccountSettings extends AuthBaseApi {
     public Response tweetList() {
         Response response = getAuth()
                 .when()
-                .get("https://api.twitter.com/1.1/statuses/home_timeline.json\n" +
-                        "\n" +
-                        "\n");
+                .get("https://api.twitter.com/1.1/statuses/home_timeline.json");
         return response;
     }
 
