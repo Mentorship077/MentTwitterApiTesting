@@ -16,23 +16,14 @@ import static io.restassured.RestAssured.given;
 public class HelloWorldRestAssured {
     public static void main(String[] args) throws IOException {
         TweetsApi tweetsApi = new TweetsApi();
-
-//        System.out.println(tweetsApi.homeTimeLine().asString());
-//        ObjectMapper mapper = new ObjectMapper();
-//        HomeTimeLine[] api = mapper.readValue(tweetsApi.homeTimeLine().asString(), HomeTimeLine[].class);
-//        System.out.println(api[1].toString());
-//
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        CollectionType javaType = mapper.getTypeFactory().constructCollectionType(List.class, HomeTimeLine.class);
 
-//        List<HomeTimeLine> api = mapper.readValue(tweetsApi.homeTimeLine().asString(), new TypeReference<List<HomeTimeLine>>() {});
-
-
-        CollectionType javaType = mapper.getTypeFactory()
-                .constructCollectionType(List.class, HomeTimeLine.class);
         List<HomeTimeLine> asList = mapper.readValue(tweetsApi.homeTimeLine().asString(), javaType);
-
-        System.out.println(asList.get(0).getId());
+        for (HomeTimeLine timeLine: asList) {
+            System.out.println(timeLine.getUser().getName());
+        }
     }
 
     @Test
