@@ -10,17 +10,24 @@ public class TweetsApi extends AuthBaseApi {
         return response;
     }
 
-    public Response deleteTweet(String id) {
+    public Response deleteTweet(Long id) {
         Response response = getAuth()
                 .when()
                 .post("https://api.twitter.com/1.1/statuses/destroy/?status=" + id);
         return response;
     }
 
-    public Response homeTimeLine() {
+    public Response getHomeTimeLine() {
         Response response = getAuth()
                 .when()
                 .get("https://api.twitter.com/1.1/statuses/home_timeline.json");
+        return response;
+    }
+
+    public Response getUserTimeLine() {
+        Response response = getAuth()
+                .when()
+                .get("https://api.twitter.com/1.1/statuses/user_timeline.json");
         return response;
     }
 }
