@@ -12,11 +12,6 @@ public class FollowsApi extends AuthBaseApi{
     }
 
 
-    // POST
-    public void createFriendship(){
-
-    }
-
     public Response followersList(){
         Response response =  getAuth()
                 .when()
