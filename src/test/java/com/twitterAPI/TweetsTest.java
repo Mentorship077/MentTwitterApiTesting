@@ -4,14 +4,13 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.twitterAPI.api.TweetsApi;
-import com.twitterAPI.payloads.HomeTimeLine;
+import com.twitterAPI.payloads.tweets.HomeTimeLine;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.util.List;
 
-import static com.twitterAPI.constants.TwitterAPIConsts.HOME_TIMELINE_DEFAULT_TWEETS;
 import static com.twitterAPI.constants.TwitterAPIConsts.SAMPLE_TWEET_DECRIPTION;
 
 public class TweetsTest extends BaseTestClass {
@@ -35,7 +34,6 @@ public class TweetsTest extends BaseTestClass {
     @Test
     public void testUserTimeLineTweets() throws IOException {
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-
         List<HomeTimeLine> asList = mapper.readValue(tweetsApi.getUserTimeLine().asString(), javaType);
 
         for (HomeTimeLine userTweet : asList) {
