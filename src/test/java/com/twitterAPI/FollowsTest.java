@@ -32,17 +32,17 @@ public class FollowsTest extends BaseTestClass {
     public void userSuggestionSlugTest() throws IOException {
         List<UserSuggestion> userTypeSuggestion = mapper.readValue(tweetsApi.userSuggestion().asString(), userTypeSuggestions);
 
-        JsonNode actualObj = (ArrayNode) mapper.readTree(tweetsApi.userSuggestionSlug(userTypeSuggestion.get(0).getSlug()).asString());
+        JsonNode actualObj = mapper.readTree(tweetsApi.userSuggestionSlug(userTypeSuggestion.get(0).getSlug()).asString());
 
         System.out.println(actualObj.size());
 
-        if (actualObj.isArray()){
-            for (JsonNode jsonNode: actualObj){
+        if (actualObj.isArray()) {
+            for (JsonNode jsonNode : actualObj) {
                 System.out.println(jsonNode.get("id"));
             }
         }
 
-        System.out.println("\n "+ actualObj.get(0).get("id"));
+        System.out.println("\n " + actualObj.get(0).get("id"));
 //        System.out.println("\n\n");
 //        System.out.println(tweetsApi.userSuggestionSlug(userTypeSuggestion.get(0).getSlug()).asString());
 
