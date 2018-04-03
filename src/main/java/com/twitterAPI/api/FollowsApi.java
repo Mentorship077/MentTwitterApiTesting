@@ -24,4 +24,11 @@ public class FollowsApi extends AuthBaseApi{
                 .get("https://api.twitter.com/1.1/followers/list.json");
         return response;
     }
+
+    public Response createFrienship(Long id){
+        Response response =  getAuth()
+                .when()
+                .post("https://api.twitter.com/1.1/friendships/create.json?user_id="+id);
+        return response;
+    }
 }
