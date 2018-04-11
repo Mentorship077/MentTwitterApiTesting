@@ -2,16 +2,12 @@ package com.twitterAPI;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.twitterAPI.api.FollowsApi;
-import com.twitterAPI.payloads.follows.MyDtoIgnoreUnknown;
 import com.twitterAPI.payloads.follows.UserSuggestion;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class FollowsTest extends BaseTestClass {
@@ -29,10 +25,6 @@ public class FollowsTest extends BaseTestClass {
     }
 
     @Test
-    public void test(){
-    }
-
-    @Test
     public void userSuggestionSlugTest() throws IOException {
         List<UserSuggestion> userTypeSuggestion = mapper.readValue(tweetsApi.userSuggestion().asString(), userTypeSuggestions);
         System.out.println(userTypeSuggestion.size()+"Number od categories");
@@ -44,7 +36,7 @@ public class FollowsTest extends BaseTestClass {
             for (JsonNode jsonNode : actualObj) {
                 System.out.println(jsonNode.get("id"));
 //                follow another people by id
-                tweetsApi.createFrienship(jsonNode.get("id").asLong());
+                tweetsApi.createFriendship(jsonNode.get("id").asLong());
             }
         }
 

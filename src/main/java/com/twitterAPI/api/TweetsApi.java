@@ -4,30 +4,18 @@ import io.restassured.response.Response;
 
 public class TweetsApi extends AuthBaseApi {
     public Response createTweet(String tweetDescription) {
-        Response response = getAuth()
-                .when()
-                .post("https://api.twitter.com/1.1/statuses/update.json?status=" + tweetDescription);
-        return response;
+        return post("https://api.twitter.com/1.1/statuses/update.json?status=" + tweetDescription);
     }
 
     public Response deleteTweet(Long id) {
-        Response response = getAuth()
-                .when()
-                .post("https://api.twitter.com/1.1/statuses/destroy/?status=" + id);
-        return response;
+        return post("https://api.twitter.com/1.1/statuses/destroy/?status=" + id);
     }
 
     public Response getHomeTimeLine() {
-        Response response = getAuth()
-                .when()
-                .get("https://api.twitter.com/1.1/statuses/home_timeline.json");
-        return response;
+        return get("https://api.twitter.com/1.1/statuses/home_timeline.json");
     }
 
     public Response getUserTimeLine() {
-        Response response = getAuth()
-                .when()
-                .get("https://api.twitter.com/1.1/statuses/user_timeline.json");
-        return response;
+        return get("https://api.twitter.com/1.1/statuses/user_timeline.json");
     }
 }

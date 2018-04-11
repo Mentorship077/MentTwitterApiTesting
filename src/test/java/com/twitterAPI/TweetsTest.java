@@ -60,4 +60,19 @@ public class TweetsTest extends BaseTestClass {
         Assert.assertEquals(tweetsCount,listAfterDeleting.size());
     }
 
+//    @Test
+//    public void shouldReturnPersonForTheId() {
+//        given().
+//                accept(ContentType.JSON).
+//                pathParam("id", 1).
+//                when().
+//                get("/people/{id}").
+//                then().
+//                statusCode(200).
+//                body(
+//                        "id", is(1),
+//                        "name", is("Praveer")
+//                );
+//    }
+
 }

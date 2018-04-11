@@ -1,5 +1,6 @@
 package com.twitterAPI.api;
 
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import static io.restassured.RestAssured.given;
@@ -17,5 +18,16 @@ public class AuthBaseApi {
                 .oauth(COSUMER_KEY, COSUMER_SEKRET_KEY, ACCESS_TOKEN, ACCESS_TOKEN_SECRET);
     }
 
+    public Response get(String path) {
+        return getAuth()
+                .when()
+                .get(path);
+    }
+
+    public Response post(String path) {
+        return getAuth()
+                .when()
+                .post(path);
+    }
 
 }
