@@ -2,22 +2,24 @@ package com.twitterAPI.api;
 
 import io.restassured.response.Response;
 
+import static com.twitterAPI.constants.TwitterAPIConsts.TWITTER_BASE_URI_API;
+
 public class FollowsApi extends AuthBaseApi {
 
     public Response userSuggestion() {
-        return get("https://api.twitter.com/1.1/users/suggestions.json");
+        return get(TWITTER_BASE_URI_API+"users/suggestions.json");
     }
 
     public Response userSuggestionSlug(String suggestion) {
-        return get("https://api.twitter.com/1.1/users/suggestions/" + suggestion + "/members.json");
+        return get(TWITTER_BASE_URI_API+"users/suggestions/" + suggestion + "/members.json");
     }
 
 
     public Response followersList() {
-        return get("https://api.twitter.com/1.1/followers/list.json");
+        return get(TWITTER_BASE_URI_API+"followers/list.json");
     }
 
     public Response createFriendship(Long id) {
-        return post("https://api.twitter.com/1.1/friendships/create.json?user_id=" + id);
+        return post(TWITTER_BASE_URI_API+"friendships/create.json?user_id=" + id);
     }
 }
