@@ -27,31 +27,11 @@ public class FollowsTest extends BaseTestClass {
     @Test
     public void userSuggestionSlugTest() throws IOException {
         List<UserSuggestion> userTypeSuggestion = tweetsApi.getUserSuggestionModel();
-        System.out.println(userTypeSuggestion.size()+"Number od categories");
-        JsonNode actualObj = tweetsApi.getUserSuggestionSlugModel(userTypeSuggestion.get(3));
+        System.out.println(" Number od categories "+userTypeSuggestion.size());
+        JsonNode actualObj = tweetsApi.getUserSuggestionSlugModel(userTypeSuggestion.get(0));
+        System.out.println(" Number of categories profiles "+ actualObj.size());
 
-        System.out.println(actualObj.size());
-
-            for (JsonNode jsonNode : actualObj) {
-                System.out.println(jsonNode.get("id"));
-//                follow another people by id
-                tweetsApi.createFriendship(jsonNode.get("id").asLong());
-            }
-
-//
         System.out.println("\n " + actualObj.get(0).get("id"));
-//        System.out.println("\n " + actualObj.get(0).get("name"));
-//        actualObj.get(0).get("id").ge;
-
-
-
-//        System.out.println("\n\n");
-//        System.out.println(tweetsApi.getUserSuggestionSlug(userTypeSuggestion.get(0).getSlug()).asString());
-//        MyDtoIgnoreUnknown node = mapper.readValue(tweetsApi.getUserSuggestionSlug(userTypeSuggestion.get(0).getSlug()).asString(), MyDtoIgnoreUnknown.class);
-
-//        if (node.has("id")) {
-//            System.out.println("id: " + node.get("id"));
-//        }
+//        tweetsApi.createFriendship(actualObj.get("id").asLong());
     }
-
 }

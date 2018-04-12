@@ -12,8 +12,6 @@ import java.util.List;
 import static com.twitterAPI.constants.TwitterAPIConsts.TWITTER_BASE_URI_API;
 
 public class FollowsApi extends AuthBaseApi {
-    private ObjectMapper mapper = new ObjectMapper();
-    private CollectionType userTypeSuggestions = mapper.getTypeFactory().constructCollectionType(List.class, UserSuggestion.class);
 
     public Response gerUserSuggestion() {
         return get(TWITTER_BASE_URI_API+"users/suggestions.json");
