@@ -18,7 +18,7 @@ public class FollowsTest extends BaseTestClass {
 
     @Test
     public void userSuggestionTest() throws IOException {
-        List<UserSuggestion> asList = mapper.readValue(tweetsApi.userSuggestion().asString(), userTypeSuggestions);
+        List<UserSuggestion> asList = mapper.readValue(tweetsApi.gerUserSuggestion().asString(), userTypeSuggestions);
         for (UserSuggestion userTweet : asList) {
             System.out.println(userTweet);
         }
@@ -26,19 +26,17 @@ public class FollowsTest extends BaseTestClass {
 
     @Test
     public void userSuggestionSlugTest() throws IOException {
-        List<UserSuggestion> userTypeSuggestion = mapper.readValue(tweetsApi.userSuggestion().asString(), userTypeSuggestions);
+        List<UserSuggestion> userTypeSuggestion = tweetsApi.getUserSuggestionModel();
         System.out.println(userTypeSuggestion.size()+"Number od categories");
-        JsonNode actualObj = mapper.readTree(tweetsApi.userSuggestionSlug(userTypeSuggestion.get(3).getSlug()).asString());
+        JsonNode actualObj = tweetsApi.getUserSuggestionSlugModel(userTypeSuggestion.get(3));
 
         System.out.println(actualObj.size());
 
-        if (actualObj.isArray()) {
             for (JsonNode jsonNode : actualObj) {
                 System.out.println(jsonNode.get("id"));
 //                follow another people by id
                 tweetsApi.createFriendship(jsonNode.get("id").asLong());
             }
-        }
 
 //
         System.out.println("\n " + actualObj.get(0).get("id"));
@@ -48,8 +46,8 @@ public class FollowsTest extends BaseTestClass {
 
 
 //        System.out.println("\n\n");
-//        System.out.println(tweetsApi.userSuggestionSlug(userTypeSuggestion.get(0).getSlug()).asString());
-//        MyDtoIgnoreUnknown node = mapper.readValue(tweetsApi.userSuggestionSlug(userTypeSuggestion.get(0).getSlug()).asString(), MyDtoIgnoreUnknown.class);
+//        System.out.println(tweetsApi.getUserSuggestionSlug(userTypeSuggestion.get(0).getSlug()).asString());
+//        MyDtoIgnoreUnknown node = mapper.readValue(tweetsApi.getUserSuggestionSlug(userTypeSuggestion.get(0).getSlug()).asString(), MyDtoIgnoreUnknown.class);
 
 //        if (node.has("id")) {
 //            System.out.println("id: " + node.get("id"));

@@ -15,16 +15,16 @@ public class FollowsApi extends AuthBaseApi {
     private ObjectMapper mapper = new ObjectMapper();
     private CollectionType userTypeSuggestions = mapper.getTypeFactory().constructCollectionType(List.class, UserSuggestion.class);
 
-    public Response userSuggestion() {
+    public Response gerUserSuggestion() {
         return get(TWITTER_BASE_URI_API+"users/suggestions.json");
     }
 
-    public Response userSuggestionSlug(String suggestion) {
+    public Response getUserSuggestionSlug(String suggestion) {
         return get(TWITTER_BASE_URI_API+"users/suggestions/" + suggestion + "/members.json");
     }
 
 
-    public Response followersList() {
+    public Response getFollowersList() {
         return get(TWITTER_BASE_URI_API+"followers/list.json");
     }
 
@@ -39,8 +39,6 @@ public class FollowsApi extends AuthBaseApi {
     }
 
     public JsonNode getUserSuggestionSlugModel(UserSuggestion suggestion) throws IOException {
-        return mapper.readTree(
-                get(TWITTER_BASE_URI_API + "users/suggestions/" + suggestion.getSlug() + "/members.json").toString());
-        //        JsonNode actualObj = mapper.readTree(tweetsApi.userSuggestionSlug(userTypeSuggestion.get(3).getSlug()).asString());
+        return mapper.readTree(get(TWITTER_BASE_URI_API+"users/suggestions/" + suggestion.getSlug() + "/members.json").asString());
     }
 }
