@@ -15,21 +15,21 @@ public class FollowsApi extends AuthBaseApi {
     private ObjectMapper mapper = new ObjectMapper();
     private CollectionType userTypeSuggestions = mapper.getTypeFactory().constructCollectionType(List.class, UserSuggestion.class);
 
-
-    public Response getUserSuggestion() {
-        return get(TWITTER_BASE_URI_API + "users/suggestions.json");
+    public Response userSuggestion() {
+        return get(TWITTER_BASE_URI_API+"users/suggestions.json");
     }
 
-    public Response getUserSuggestionSlug(String suggestion) {
-        return get(TWITTER_BASE_URI_API + "users/suggestions/" + suggestion + "/members.json");
+    public Response userSuggestionSlug(String suggestion) {
+        return get(TWITTER_BASE_URI_API+"users/suggestions/" + suggestion + "/members.json");
     }
 
-    public Response getFollowersList() {
-        return get(TWITTER_BASE_URI_API + "followers/list.json");
+
+    public Response followersList() {
+        return get(TWITTER_BASE_URI_API+"followers/list.json");
     }
 
     public Response createFriendship(Long id) {
-        return post(TWITTER_BASE_URI_API + "friendships/create.json?user_id=" + id);
+        return post(TWITTER_BASE_URI_API+"friendships/create.json?user_id=" + id);
     }
 
     //   Additional methods
