@@ -39,20 +39,4 @@ public class TweetsTest extends BaseTestClass {
         List<HomeTimeLine> listAfterDeleting = tweetsApi.getUserTimeLineModel();
         Assert.assertEquals(tweetsCount, listAfterDeleting.size(),"Asserting tweets after deleting and getting actual result");
     }
-
-//    @Test
-//    public void shouldReturnPersonForTheId() {
-//        given().
-//                accept(ContentType.JSON).
-//                pathParam("id", 1).
-//                when().
-//                get("/people/{id}").
-//                then().
-//                statusCode(200).
-//                body(
-//                        "id", is(1),
-//                        "name", is("Praveer")
-//                );
-//    }
-
 }
