@@ -31,15 +31,13 @@ public class TweetsTest extends BaseTestClass {
 //         creating
         tweetsApi.createTweet(SAMPLE_TWEET_DECRIPTION);
         List<HomeTimeLine> listAfterCreating = tweetsApi.getUserTimeLineModel();
-
         Assert.assertEquals(listAfterCreating.get(0).getText(), SAMPLE_TWEET_DECRIPTION);
 
 //        deleting
         tweetsCount = listAfterCreating.size();
         tweetsApi.deleteTweet(listAfterCreating.get(0).getId());
-        List<HomeTimeLine> listAfterDeleting = tweetsApi.getHomeTimeLineModel();
-
-        Assert.assertEquals(tweetsCount, listAfterDeleting.size());
+        List<HomeTimeLine> listAfterDeleting = tweetsApi.getUserTimeLineModel();
+        Assert.assertEquals(tweetsCount, listAfterDeleting.size(),"Asserting tweets after deleting and getting actual result");
     }
 
 //    @Test
