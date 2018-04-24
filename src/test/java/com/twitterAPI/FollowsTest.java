@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.twitterAPI.api.FollowsApi;
 import com.twitterAPI.payloads.follows.UserSuggestion;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -18,20 +19,22 @@ public class FollowsTest extends BaseTestClass {
 
     @Test
     public void userSuggestionTest() throws IOException {
-        List<UserSuggestion> asList = mapper.readValue(tweetsApi.gerUserSuggestion().asString(), userTypeSuggestions);
-        for (UserSuggestion userTweet : asList) {
+        List<UserSuggestion> userTypeSuggestion = mapper.readValue(tweetsApi.gerUserSuggestion().asString(), userTypeSuggestions);
+        for (UserSuggestion userTweet : userTypeSuggestion) {
             System.out.println(userTweet);
         }
+        Assert.assertTrue(userTypeSuggestion.size() > 1, "Size of user suggestion categories " + userTypeSuggestion.size());
     }
 
     @Test
     public void userSuggestionSlugTest() throws IOException {
         List<UserSuggestion> userTypeSuggestion = tweetsApi.getUserSuggestionModel();
-        System.out.println(" Number od categories "+userTypeSuggestion.size());
         JsonNode actualObj = tweetsApi.getUserSuggestionSlugModel(userTypeSuggestion.get(0));
-        System.out.println(" Number of categories profiles "+ actualObj.size());
+        System.out.println(" Number of categories profiles " + actualObj.size());
 
-        System.out.println("\n " + actualObj.get(0).get("id"));
+        Assert.assertTrue(actualObj.size() > 1, "Size of category profile " + userTypeSuggestion.size());
+        Assert.assertNotNull(actualObj.get(0).get("id"), "Profile doesn't found");
+
 //        tweetsApi.createFriendship(actualObj.get("id").asLong());
     }
 }
